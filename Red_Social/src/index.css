@@ -1,0 +1,21 @@
+:root {
+  --main-backgorund-color: #191919;
+  --secondary-background-color: #282828;
+  --button-color: #fff519;
+  --main-words-color: #fffffb;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.html {
+  font-size: 62.5%;
+}
+
+body {
+  background: var(--main-backgorund-color);
+  color: var(--main-words-color);
+}

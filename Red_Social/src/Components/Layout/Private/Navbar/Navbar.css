@@ -1,0 +1,28 @@
+.nav__container ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    gap: 5px;
+}
+
+.nav__container .nav__menu-icon svg, figure svg{
+    width: 35px;
+    height: 35px;
+}
+
+@media(width>428px){
+    .nav__container ul {
+        gap: 20px;
+    }
+}
+
+
+@media(width>768px){
+    .nav__container ul {
+        gap: 50px;
+    }
+    .nav__container {
+        width: 300px;
+    }
+}
