@@ -6,22 +6,48 @@
     gap: 20px;
 }
 
-.nav__container .nav__container-menu-public li{
+.nav__container .nav__container-menu-public li a{
     display: flex;
     justify-content: flex-end;
     align-items: center;
     font-size: 1rem;
     font-weight: bold;
+    color: var(--main-words-color);
+    text-decoration: none;
     gap: 2px;
+    border: 1px solid var(--main-words-color);
+    padding: 5px;
 }
 
-.nav__container .nav__container-menu-public .nav__menu-icon svg:hover g{
+.nav__container .nav__menu-icon a svg{
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    fill: var(--main-words-color);
+    stroke: var(--main-words-color);
+}
+
+.nav__container .nav__menu-icon a svg g path{
+    fill: var(--main-words-color);
+}
+
+.nav__container .nav__menu-icon a svg g{
+    fill: var(--main-words-color);
+    stroke: var(--main-words-color);
+}
+
+.nav__container .nav__menu-icon a svg:hover g{
     fill: var(--button-color);
     stroke: var(--button-color);
 }
 
-.nav__container .nav__container-menu-public li:hover{
-    cursor: pointer;
+.nav__container .nav__menu-icon a svg:hover g path{
+    fill: var(--button-color);
+}
+
+.nav__container .nav__container-menu-public .nav__menu-icon a svg:hover g{
+    fill: var(--button-color);
+    stroke: var(--button-color);
 }
 
 @media(width>428px){
