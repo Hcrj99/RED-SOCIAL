@@ -1,9 +1,13 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { PublicLayout } from '../Components/Layout/Public/PublicLayout';
-import { Login } from '../Components/Users/Login';
-import { Register } from '../Components/Users/Register';
-// import { HeaderPrivate } from '../Components/Layout/Private/Header/Header';
-
+import { Login } from '../Components/Users/Login/Login';
+import { Register } from '../Components/Users/Register/Register';
+import { PrivateLayout } from '../Components/Layout/Private/PrivateLayout';
+import { Publications } from '../Components/Publications/Publications';
+import { Message } from '../Components/Follows/Message/Message';
+import { Notifications } from '../Components/Follows/Notifications/Notifications';
+import { Following } from '../Components/Follows/Following/Following';
+import { ErrorRoute } from '../Components/Errors/Error/ErrorRoute';
 
 const Router = () => {
     return (
@@ -14,6 +18,17 @@ const Router = () => {
                     <Route path='login' element={<Login />} />
                     <Route path='register' element={<Register />} />
                 </Route>
+
+                <Route path='/hs' element={<PrivateLayout />}>
+                    <Route index element={<Publications />} />
+                    <Route path='feed' element={<Publications />} />
+                    <Route path='messages' element={<Message />} />
+                    <Route path='notifications' element={<Notifications />} />
+                    <Route path='follows' element={<Following />} />
+                </Route>
+
+                <Route path='*' element={<ErrorRoute />} />
+
             </Routes>
 
         </BrowserRouter>
