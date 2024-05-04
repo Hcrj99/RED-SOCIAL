@@ -1,8 +1,7 @@
 import { Navbar } from "../Navbar/Navbar";
 import './Header.css';
-import { UserPhoto } from '../../../svg/UserPhoto';
 
-export const HeaderPrivate = () => {
+export const HeaderPublic = () => {
     return (
         <header className="header__container">
             <div className="left__container">
@@ -12,9 +11,6 @@ export const HeaderPrivate = () => {
                 </form>
             </div>
             <Navbar />
-            <figure className='user__phtograpy'>
-                <UserPhoto />
-            </figure>
         </header>
     );
 }

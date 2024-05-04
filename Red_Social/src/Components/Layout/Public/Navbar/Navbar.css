@@ -1,0 +1,40 @@
+.nav__container .nav__container-menu-public {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    list-style: none;
+    gap: 20px;
+}
+
+.nav__container .nav__container-menu-public li{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: bold;
+    gap: 2px;
+}
+
+.nav__container .nav__container-menu-public .nav__menu-icon svg:hover g{
+    fill: var(--button-color);
+    stroke: var(--button-color);
+}
+
+.nav__container .nav__container-menu-public li:hover{
+    cursor: pointer;
+}
+
+@media(width>428px){
+    .nav__container ul {
+        gap: 20px;
+    }
+}
+
+@media(width>768px){
+    .nav__container ul {
+        gap: 50px;
+    }
+    .nav__container {
+        width: 300px;
+    }
+}
