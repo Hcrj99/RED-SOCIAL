@@ -6,9 +6,30 @@
     gap: 5px;
 }
 
-.nav__container .nav__menu-icon svg, figure svg{
+.nav__container .nav__menu-icon svg{
     width: 35px;
     height: 35px;
+    cursor: pointer;
+    fill: var(--main-words-color);
+    stroke: var(--main-words-color);
+}
+
+.nav__container .nav__menu-icon svg g path{
+    fill: var(--main-words-color);
+}
+
+.nav__container .nav__menu-icon svg g{
+    fill: var(--main-words-color);
+    stroke: var(--main-words-color);
+}
+
+.nav__container .nav__menu-icon svg:hover g{
+    fill: var(--button-color);
+    stroke: var(--button-color);
+}
+
+.nav__container .nav__menu-icon svg:hover g path{
+    fill: var(--button-color);
 }
 
 @media(width>428px){
@@ -16,7 +37,6 @@
         gap: 20px;
     }
 }
-
 
 @media(width>768px){
     .nav__container ul {

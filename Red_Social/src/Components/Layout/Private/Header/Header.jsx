@@ -12,7 +12,7 @@ export const Header = () => {
                 </form>
             </div>
             <Navbar />
-            <figure>
+            <figure className='user__phtograpy'>
                 <UserPhoto />
             </figure>
         </header>

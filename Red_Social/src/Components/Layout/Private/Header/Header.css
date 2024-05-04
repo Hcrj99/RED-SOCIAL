@@ -15,6 +15,12 @@ h1 {
     display: none;
 }
 
+.user__phtograpy svg{
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+
 @media(width>428px){
     .left__container {
         width: 300px;
