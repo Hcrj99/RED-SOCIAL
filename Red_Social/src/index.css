@@ -18,4 +18,5 @@
 body {
   background: var(--main-backgorund-color);
   color: var(--main-words-color);
+  font-family: "Allerta", sans-serif;
 }

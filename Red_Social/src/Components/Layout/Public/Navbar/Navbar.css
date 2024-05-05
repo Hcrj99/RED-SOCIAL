@@ -15,7 +15,7 @@
     color: var(--main-words-color);
     text-decoration: none;
     gap: 2px;
-    border: 1px solid var(--main-words-color);
+    border: 1px solid var(--secondary-background-color);
     border-radius: 10px;
     padding: 5px;
 }
