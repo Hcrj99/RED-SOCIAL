@@ -1,4 +1,4 @@
-.Form__register {
+.Form__container {
     display: flex;
     width: 500px;
     flex-direction: column;
@@ -12,19 +12,19 @@
     background: var(--secondary-background-color);
 }
 
-.Form__register div {
+.Form__container div {
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
 
-.Form__register h2 {
+.Form__container h2 {
     margin: 0 auto;
     font-size: 1.5rem;
     color: var(--button-color);
 }
 
-.Form__register input[type='text'] {
+.Form__container input[type='text'] {
     width: 200px;
     height: 35px;
     padding: 10px;
@@ -35,7 +35,7 @@
     background-color: var(--main-backgorund-color);
 }
 
-.Form__register input[type='submit'] {
+.Form__container input[type='submit'] {
     margin: 0 auto;
     width: 200px;
     height: 35px;
@@ -50,7 +50,7 @@
 
 
 @media (width >= 430px) {
-    .Form__register input[type='text'] {
+    .Form__container input[type='text'] {
         width: 400px;
     }
 }
