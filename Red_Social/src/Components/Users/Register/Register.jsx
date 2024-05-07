@@ -12,9 +12,7 @@ export const Register = () => {
     const registerUser = async(event) => {
         event.preventDefault();
         let newUser = formulary;
-        console.log(newUser);
         const { data } = await Ajax(Global.url + 'user/register', 'POST' , newUser);
-        console.log(data);
         data.status === 'success' ? setResult('sent') : setResult('error');
     };
 
@@ -37,12 +35,12 @@ export const Register = () => {
 
             <div>
                 <label htmlFor="email">E-mail: </label>
-                <input type="text" name='email' placeholder="E-mail" onChange={changed} />
+                <input type="email" name='email' placeholder="E-mail" onChange={changed} />
             </div>
 
             <div>
                 <label htmlFor="password">Password: </label>
-                <input type="text" name='password' placeholder="Password" onChange={changed} />
+                <input type="password" name='password' placeholder="Password" onChange={changed} />
             </div>
             <input type="submit" value='Register' />
             <h2>{result === 'sent'? "User regiter correct" : " "}{result === 'error'? "nick or email is in use" : " "}</h2>

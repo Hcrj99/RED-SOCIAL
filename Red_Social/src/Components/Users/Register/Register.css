@@ -24,7 +24,7 @@
     color: var(--button-color);
 }
 
-.Form__container input[type='text'] {
+.Form__container input[type='text'], .Form__container input[type='email'], .Form__container input[type='password'] {
     width: 200px;
     height: 35px;
     padding: 10px;
@@ -50,7 +50,7 @@
 
 
 @media (width >= 430px) {
-    .Form__container input[type='text'] {
+    .Form__container input[type='text'], .Form__container input[type='email'], .Form__container input[type='password'] {
         width: 400px;
     }
 }
