@@ -7,7 +7,6 @@ export const Login = () => {
     const { formulary, changed } = useForm({});
     const [result, setResult] = useState('no sent');
 
-
     const loginUser = async (event) => {
         event.preventDefault();
         let loginUser = formulary;
