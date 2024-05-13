@@ -23,9 +23,9 @@ h1 {
 
 @media(width>428px){
     .left__container {
-        width: 300px;
+        width: 350px;
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         gap: 10px;
     }

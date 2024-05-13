@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from "react";
 import { PropTypes } from 'prop-types';
-import { Ajax } from "../Helpers/Ajax";
 import { Global } from "../Helpers/Global";
 
 const AuthContext = createContext();

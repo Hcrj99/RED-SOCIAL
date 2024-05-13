@@ -12,9 +12,7 @@ export const HeaderPrivate = () => {
                 </form>
             </div>
             <Navbar />
-            <figure className='user__phtograpy'>
-                <UserPhoto />
-            </figure>
+            <UserPhoto />
         </header>
     );
 }
