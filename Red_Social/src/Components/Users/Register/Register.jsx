@@ -43,7 +43,7 @@ export const Register = () => {
                 <input type="password" name='password' placeholder="Password" onChange={changed} />
             </div>
             <input type="submit" value='Register' />
-            <h2>{result === 'sent'? "User regiter correct" : " "}{result === 'error'? "nick or email is in use" : " "}</h2>
+            <h2>{result === 'sent'? "User register correct" : " "}{result === 'error'? "nick or email is in use" : " "}</h2>
         </form>
     )
 }
