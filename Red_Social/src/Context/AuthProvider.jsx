@@ -9,6 +9,7 @@ export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState({});
     const [countFollowed , setCountFollowed] = useState();
     const [countFollowings, seCountFollowings] = useState();
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         authUser()
@@ -49,6 +50,8 @@ export const AuthProvider = ({ children }) => {
         const countFollowing = await requestFollowing.json();
         //set count following
         seCountFollowings(countFollowing.total);
+
+        setLoading(false);
     }
 
     return (
@@ -57,6 +60,7 @@ export const AuthProvider = ({ children }) => {
                     auth,
                     countFollowed,
                     countFollowings,
+                    loading,
                     setAuth,
                     setCountFollowed,
                     seCountFollowings
