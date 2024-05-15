@@ -7,6 +7,8 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
 
     const [auth, setAuth] = useState({});
+    const [countFollowed , setCountFollowed] = useState();
+    const [countFollowings, seCountFollowings] = useState();
 
     useEffect(() => {
         authUser()
@@ -24,8 +26,6 @@ export const AuthProvider = ({ children }) => {
         const userObject = JSON.parse(user);
         const userId = userObject.id;
 
-        console.log(token);
-
         const options = {
             method: 'GET',
             headers: {
@@ -36,16 +36,30 @@ export const AuthProvider = ({ children }) => {
         //ajax verificate token 
         const request = await fetch(Global.url + 'user/profile/' + userId, options);
         const data = await request.json();
-        console.log(data);
         //set auth state
         setAuth(data.user);
+
+        //get followed + followers
+        const requestFollowers = await  fetch(Global.url + 'follow/followers/' + userId, options);
+        const countFollowers = await requestFollowers.json();
+        //set count followers
+        setCountFollowed(countFollowers.total);
+
+        const requestFollowing = await  fetch(Global.url + 'follow/following', options);
+        const countFollowing = await requestFollowing.json();
+        //set count following
+        seCountFollowings(countFollowing.total);
     }
 
     return (
         <AuthContext.Provider
             value={{
                     auth,
-                    setAuth
+                    countFollowed,
+                    countFollowings,
+                    setAuth,
+                    setCountFollowed,
+                    seCountFollowings
             }}
         >
             {children}

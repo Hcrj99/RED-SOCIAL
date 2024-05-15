@@ -5,21 +5,21 @@ import userEmpty from '../../../img/userempty.jpg';
 
 export const UserPanel = () => {
 
-    const { auth } = useAuth();
+    const { auth , countFollowed , countFollowings } = useAuth();
 
     return (
         <section className='section__user-profile'>
             <div className='profile__container'>
                 <div className='profile1'>
                     <div>
-                        <h2>24243</h2>
+                        <h2>{countFollowed}</h2>
                         <h4>followers</h4>
                     </div>
                     <figure>
                         {auth.image !== 'Default.png' ? <img src={Global.url + 'user/avatar/' + auth.image} alt='user image'></img> : <img src={userEmpty} alt='user image'></img>}
                     </figure>
                     <div>
-                        <h2>24243</h2>
+                        <h2>{countFollowings}</h2>
                         <h4>following</h4>
                     </div>
                 </div>
