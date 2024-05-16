@@ -21,6 +21,7 @@ export const AuthProvider = ({ children }) => {
         const user = localStorage.getItem('user');
         //verificate token + user
         if(!token || !user ){
+            setLoading(false);
             return false;
         }
         //transform object in javascript

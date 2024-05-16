@@ -2,10 +2,13 @@ import { useState } from "react";
 import { Ajax } from "../../../Helpers/Ajax";
 import { Global } from "../../../Helpers/Global";
 import { useForm } from "../../../Hooks/useForm";
+import useAuth from "../../../Hooks/useAuth";
 
 export const Login = () => {
     const { formulary, changed } = useForm({});
     const [result, setResult] = useState('no sent');
+
+    const { setAuth } = useAuth();
 
     const loginUser = async (event) => {
         event.preventDefault();
@@ -18,7 +21,16 @@ export const Login = () => {
             localStorage.setItem('token', data.token);
             localStorage.setItem('user', JSON.stringify(data.user));
 
-            setResult('sent')
+            setResult('sent');
+
+            //set auth
+            setAuth(data.user);
+
+            //re direction
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000)
+
         } else {
             setResult('error');
         }
