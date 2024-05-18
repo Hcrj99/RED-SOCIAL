@@ -1,6 +1,7 @@
 .section__user-profile {
     display: flex;
-    justify-content: center;
+    align-items: center;
+    justify-content: flex-start;
     flex-direction: column;
     gap: 50px;
 }

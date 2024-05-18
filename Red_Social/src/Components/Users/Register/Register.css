@@ -1,6 +1,6 @@
 .Form__container {
     display: flex;
-    width: 500px;
+    width: 300px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -24,7 +24,7 @@
     color: var(--button-color);
 }
 
-.Form__container input[type='text'], .Form__container input[type='email'], .Form__container input[type='password'] {
+.Form__container input[type='text'], .Form__container input[type='email'], .Form__container input[type='password'] ,  .Form__container textarea {
     width: 200px;
     height: 35px;
     padding: 10px;
@@ -33,6 +33,10 @@
     font-weight: bold;
     color: var(--button-color);
     background-color: var(--main-backgorund-color);
+}
+
+.Form__container textarea {
+    height: 80px;
 }
 
 .Form__container input[type='submit'] {
@@ -50,7 +54,11 @@
 
 
 @media (width >= 430px) {
-    .Form__container input[type='text'], .Form__container input[type='email'], .Form__container input[type='password'] {
+    .Form__container {
+        width: 500px;
+    }
+
+    .Form__container input[type='text'], .Form__container input[type='email'], .Form__container input[type='password'], .Form__container textarea {
         width: 400px;
     }
 }

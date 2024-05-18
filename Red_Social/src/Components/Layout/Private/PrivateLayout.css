@@ -1,3 +1,10 @@
+.feed__section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 @media (width <= 430px) {
     .private__section {
         margin-top: 30px;
@@ -12,7 +19,7 @@
     }
 }
 
-@media (width >= 430px) {
+@media (width >= 769px) {
     .private__section {
         display: grid;
         grid-template-columns: 1fr 2fr 1fr;
