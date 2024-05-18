@@ -21,6 +21,42 @@ h1 {
     cursor: pointer;
 }
 
+
+.menu__user li{
+    list-style: none;
+    padding: 5px;
+}
+
+.menu__user > li {
+    float: none;
+}
+
+.menu__user-config ul {
+    display: none;
+    padding: 10px;
+    border: 1px var(--main-backgorund-color);
+    border-radius: 10px;
+    background: var(--secondary-background-color);
+    
+}
+
+.menu__user-config ul > li a{
+    text-decoration: none;
+    color: var(--main-words-color);
+}
+
+.menu__user-config ul > li a:hover{
+    color: var(--button-color);
+}
+
+.menu__user-config:hover > ul {
+    position: absolute;
+    right: 20px;
+    top: 80px;
+    display: block;
+}
+
+
 @media(width>428px){
     .left__container {
         width: 350px;
@@ -45,8 +81,12 @@ h1 {
     }    
 }
 
-@media(width>768px){
+@media(width >= 768px){
     .left__container form  input[type='text']{
         width: 300px;
-    }    
+    }
+    
+    .menu__user-config:hover > ul {
+        right: 60px;
+    }
 }
