@@ -10,6 +10,7 @@ import { Following } from '../Components/Follows/Following/Following';
 import { ErrorRoute } from '../Components/Errors/Error/ErrorRoute';
 import { AuthProvider } from '../Context/AuthProvider';
 import { LogOut } from '../Components/Users/Login/LogOut';
+import { EditUser } from '../Components/Users/EditUser/EditUser';
 
 const Router = () => {
     return (
@@ -29,6 +30,7 @@ const Router = () => {
                         <Route path='notifications' element={<Notifications />} />
                         <Route path='follows' element={<Following />} />
                         <Route path='logout' element={<LogOut />} />
+                        <Route path='edituser' element={<EditUser />} />
                     </Route>
 
                     <Route path='*' element={<ErrorRoute />} />

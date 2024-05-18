@@ -14,21 +14,21 @@
     stroke: var(--main-words-color);
 }
 
-.nav__container .nav__menu-icon svg g path{
+.nav__container .nav__menu-icon a > svg g path{
     fill: var(--main-words-color);
 }
 
-.nav__container .nav__menu-icon svg g{
+.nav__container .nav__menu-icon a > svg g{
     fill: var(--main-words-color);
     stroke: var(--main-words-color);
 }
 
-.nav__container .nav__menu-icon svg:hover g{
+.nav__container .nav__menu-icon a > svg:hover g{
     fill: var(--button-color);
     stroke: var(--button-color);
 }
 
-.nav__container .nav__menu-icon svg:hover g path{
+.nav__container .nav__menu-icon a > svg:hover g path{
     fill: var(--button-color);
 }
 

@@ -22,7 +22,7 @@ export const HeaderPrivate = () => {
                     <UserPhoto />
                     <ul>
                         <li>{'@' + auth.nick}</li>
-                        <li>Edit profile</li>
+                        <li><NavLink to='/hs/edituser'>Edit {auth.name}</NavLink></li>
                         <li><NavLink to='/hs/logout'>
                             <span>Sign Out</span>
                             </NavLink>
