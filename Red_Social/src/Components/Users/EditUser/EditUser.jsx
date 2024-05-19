@@ -34,8 +34,40 @@ export const EditUser = () => {
             setAuth(data.user); 
             setResult('sent');
         } 
-        else {setResult('error'); 
+        else {
+            setResult('error'); 
+        }
+        //Upload images
+        const fileInput = document.querySelector('#file');
 
+
+        if(data.status === 'success' && fileInput.files[0]){
+            //get data to upload
+            const formData = new FormData();
+            formData.append('file0', fileInput.files[0]);
+
+            console.log(formData);
+
+            //request 
+            const uploadRequest = await fetch(Global.url + 'user/upload' , {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    "Authorization": localStorage.getItem('token')
+                }
+            });
+
+            const dataImage = await uploadRequest.json();
+
+            console.log(dataImage);
+
+            if (dataImage.status == 'success'){
+                delete dataImage.user.password;
+                setAuth(dataImage.user);
+                setResult('sent');
+            }else {
+                setResult('error');
+            }
         }
     }
     
@@ -76,7 +108,7 @@ export const EditUser = () => {
                 <label htmlFor="file0">Picture</label>
                 <div className="edit__image">{auth.image !== 'Default.png' ? <img src={Global.url + 'user/avatar/' + auth.image} alt='user image'></img> : <img src={  userEmpty } alt='user image'></img>}</div>
                 <div id='divfile'>
-                    <p id='text'>Pothography</p>
+                    <p id='text'>Photography</p>
                     <input type='file' name='file0' id='file' />
                 </div>
                 
