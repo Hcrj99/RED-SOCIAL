@@ -46,8 +46,6 @@ export const EditUser = () => {
             const formData = new FormData();
             formData.append('file0', fileInput.files[0]);
 
-            console.log(formData);
-
             //request 
             const uploadRequest = await fetch(Global.url + 'user/upload' , {
                 method: 'POST',
@@ -58,8 +56,6 @@ export const EditUser = () => {
             });
 
             const dataImage = await uploadRequest.json();
-
-            console.log(dataImage);
 
             if (dataImage.status == 'success'){
                 delete dataImage.user.password;
