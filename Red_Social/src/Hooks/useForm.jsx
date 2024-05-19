@@ -24,6 +24,7 @@ export const useForm = ( objetoInicial = {}) => {
         let data =serializeForm(e.target);
 
         setForm(data);
+
     };
 
     const changed = ({ target }) => {
@@ -39,5 +40,6 @@ export const useForm = ( objetoInicial = {}) => {
         formulary,
         sent,
         changed,
+        serializeForm
     }
 }

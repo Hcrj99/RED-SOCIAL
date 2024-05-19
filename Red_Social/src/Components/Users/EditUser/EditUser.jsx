@@ -7,13 +7,36 @@ import userEmpty from '../../../img/userempty.jpg';
 
 export const EditUser = () => {
     
-    const { auth } = useAuth();
+    const { auth, setAuth } = useAuth();
 
-    const { formulary, changed } = useForm({});
+    const { serializeForm } = useForm({});
     const [result, setResult] = useState('no sent');
 
-    const updateUser = (event) => {
+    const updateUser = async(event) => {
         event.preventDefault();
+        let newUser = serializeForm(event.target);
+        delete newUser.file0;
+
+        const options = {
+            method: 'PUT',
+            body: JSON.stringify(newUser),
+            headers: {
+                "Content-type": "application/json",
+                "Authorization": localStorage.getItem('token')
+            }
+        }
+        
+        const requestEdit = await fetch(Global.url + 'user/update', options);
+        const data = await requestEdit.json();
+
+        if(data.status === 'success') {
+            delete data.user.password;
+            setAuth(data.user); 
+            setResult('sent');
+        } 
+        else {setResult('error'); 
+
+        }
     }
     
     return (
@@ -59,7 +82,7 @@ export const EditUser = () => {
                 
             </div>
             <input type="submit" value='Save Edition' />
-            <h2>{result === 'sent'? "User register correct" : " "}{result === 'error'? "nick or email is in use" : " "}</h2>
+            <h2>{result === 'sent'? "User Edit correct" : " "}{result === 'error'? "nick or email is in use" : " "}</h2>
         </form>
     )
 }

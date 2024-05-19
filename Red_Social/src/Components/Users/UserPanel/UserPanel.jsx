@@ -26,7 +26,7 @@ export const UserPanel = () => {
                 <div className='profile2'>
                     <h2>{auth.name}</h2>
                     <h3>@{auth.nick}</h3>
-                    <h2>{auth.bio}</h2>
+                    <h4>{auth.bio}</h4>
                 </div>
             </div>
             <div className='history__container'>
