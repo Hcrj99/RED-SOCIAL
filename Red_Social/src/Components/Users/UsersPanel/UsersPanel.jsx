@@ -39,7 +39,10 @@ export const UsersPanel = () => {
                             {user.image !== 'Default.png' ? <img src={Global.url + 'user/avatar/' + user.image} alt='user image'></img> : <img src={userEmpty} alt='user image'></img>}
                         </figure>
                         <div className='user__description'>
-                            <div>@{user.nick} | {user.name} | date</div>
+                            <div className='user__description-ids'>
+                                <h4 className='nick'>@{user.nick}</h4>
+                                <h4 className='name'>{user.name} date</h4>
+                            </div>
                             <div>{user.bio}</div>
                         </div>
                         <div className='social__methods'>
