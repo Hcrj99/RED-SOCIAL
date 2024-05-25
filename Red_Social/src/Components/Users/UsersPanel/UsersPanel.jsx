@@ -8,6 +8,7 @@ export const UsersPanel = () => {
     const [users, setUsers] = useState([]);
     const [page, setpage] = useState(1);
     const [totalPage, setTotalPages] = useState();
+    const [following, setFollowing] = useState([]);
 
     useEffect(() => {
         getUsers();
@@ -28,6 +29,7 @@ export const UsersPanel = () => {
         if (data.users && data.status === 'success') {
             setUsers(data.users);
             setTotalPages(data.totalpages);
+            setFollowing(data.following);
         }
     };
 
@@ -61,8 +63,7 @@ export const UsersPanel = () => {
                             </div>
                         </div>
                         <div className='social__methods'>
-                            <button>FOLLOW</button>
-                            <button>UNFOLLOW</button>
+                            {following.includes(user._id) ? <button>UNFOLLOW</button> : <button>FOLLOW</button>}        
                         </div>
                     </article>
                 );
