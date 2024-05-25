@@ -5,6 +5,14 @@
     align-items: center;
 }
 
+.loading__state {
+    width: 100%;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 @media (width <= 430px) {
     .private__section {
         margin-top: 30px;

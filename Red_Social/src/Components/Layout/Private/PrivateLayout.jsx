@@ -4,17 +4,20 @@ import { UserPanel } from '../../Users/UserPanel/UserPanel';
 import { UsersPanel } from '../../Users/UsersPanel/UsersPanel';
 import './PrivateLayout.css';
 import useAuth from '../../../Hooks/useAuth';
+import { Loading } from '../../Loading/Loading';
 
 export const PrivateLayout = () => {
     const { auth, loading } = useAuth();
-    if(loading){
-        return(
-        <>
-            <HeaderPrivate />
-            <h1>Loading...</h1>
-        </>
+    if (loading) {
+        return (
+            <>
+                <HeaderPrivate />
+                <section className='loading__state'>
+                    <Loading></Loading>
+                </section>
+            </>
         )
-    }else{
+    } else {
         return (
             <>
                 <HeaderPrivate />

@@ -28,8 +28,6 @@ export const UsersPanel = () => {
         if (data.users && data.status === 'success') {
             setUsers(data.users);
             setTotalPages(data.totalpages);
-            console.log(totalPage);
-            console.log(data.totalpages);
         }
     };
 
@@ -44,7 +42,6 @@ export const UsersPanel = () => {
         if (page > 1) {
             let next = page - 1;
             setpage(next);
-            console.log(next);
         }
     }
 

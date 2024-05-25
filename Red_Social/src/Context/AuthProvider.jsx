@@ -21,8 +21,10 @@ export const AuthProvider = ({ children }) => {
         const user = localStorage.getItem('user');
         //verificate token + user
         if(!token || !user ){
-            setLoading(false);
-            return false;
+            setTimeout(() => {
+                setLoading(false);
+                return false;
+            },2000)
         }
         //transform object in javascript
         const userObject = JSON.parse(user);
@@ -52,7 +54,10 @@ export const AuthProvider = ({ children }) => {
         //set count following
         seCountFollowings(countFollowing.total);
 
-        setLoading(false);
+        setTimeout(() => {
+            setLoading(false);
+            return false;
+        },2000)
     }
 
     return (
