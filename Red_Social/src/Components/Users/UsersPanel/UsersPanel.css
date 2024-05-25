@@ -69,6 +69,27 @@
     font-size: 0.8rem;
 }
 
+.user__description-ids .name{
+    font-size: 1rem;
+}
+
+.user__description-ids .bio {
+    font-size: 0.6rem;
+}
+
+.move__paginate-users button {
+    margin: 10px;
+    width: 50px;
+    height: 35px;
+    padding: 10px;
+    border: solid 1px var(--secondary-background-color);
+    border-radius: 20px;
+    font-weight: bold;
+    color: var(--button-color);
+    background-color: var(--secondary-background-color);
+    cursor: pointer;
+}
+
 @media (width <= 430px){
     .user__container-view {
         align-items: center;
