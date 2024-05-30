@@ -28,7 +28,7 @@ const Router = () => {
                         <Route path='feed' element={<Publications />} />
                         <Route path='messages' element={<Message />} />
                         <Route path='notifications' element={<Notifications />} />
-                        <Route path='follows' element={<Following />} />
+                        <Route path='following/:userId' element={<Following />} />
                         <Route path='logout' element={<LogOut />} />
                         <Route path='edituser' element={<EditUser />} />
                     </Route>

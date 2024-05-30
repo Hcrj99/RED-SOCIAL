@@ -86,28 +86,28 @@ export const UsersPanel = () => {
     return (
         <section className='users__container'>
             {users.map(user => {
-                {if(user._id != auth._id){
-                    return (
-                        <article key={user._id} className='user__container-view'>
-                            <figure>
-                                {user.image !== 'Default.png' ? <img src={Global.url + 'user/avatar/' + user.image} alt='user image'></img> : <img src={userEmpty} alt='user image'></img>}
-                            </figure>
-                            <div className='user__description'>
-                                <div className='user__description-ids'>
-                                    <h4 className='nick'>@{user.nick}</h4>
-                                    <h4 className='name'>{user.name} date</h4>
-                                    <h4 className='bio'>{user.bio}</h4>
+                {
+                    if (user._id != auth._id) {
+                        return (
+                            <article key={user._id} className='user__container-view'>
+                                <figure>
+                                    {user.image !== 'Default.png' ? <img src={Global.url + 'user/avatar/' + user.image} alt='user image'></img> : <img src={userEmpty} alt='user image'></img>}
+                                </figure>
+                                <div className='user__description'>
+                                    <div className='user__description-ids'>
+                                        <h4 className='nick'>@{user.nick}</h4>
+                                        <h4 className='name'>{user.name} date</h4>
+                                        <h4 className='bio'>{user.bio}</h4>
+                                    </div>
                                 </div>
-                            </div>
-                            {(user._id != auth._id) &&
                                 <div className='social__methods'>
                                     {following.includes(user._id) && <button onClick={() => unFollow(user._id)}>UNFOLLOW</button>}
                                     {!following.includes(user._id) && <button onClick={() => follow(user._id)}>FOLLOW</button>}
                                 </div>
-                            }
-                        </article>
-                    );
-                }}
+                            </article>
+                        );
+                    }
+                }
             })}
             <div className='move__paginate-users'>
                 {page > 1 ? <button onClick={prevPage}>Prev</button> : ''}

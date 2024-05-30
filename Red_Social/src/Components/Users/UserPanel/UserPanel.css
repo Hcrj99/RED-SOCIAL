@@ -38,12 +38,16 @@
     border: 5px solid var(--button-color);
 }
 
-
-.profile1 h2 {
-    font-size: 1rem;
+.profile1 a {
+    text-decoration: none;
 }
 
-.profile1 h4 {
+.profile1 a  h2 {
+    font-size: 1rem;
+    color: var(--main-words-color);
+}
+
+.profile1 a  h4 {
     font-size: 0.6rem;
     color: #696975;
 }
