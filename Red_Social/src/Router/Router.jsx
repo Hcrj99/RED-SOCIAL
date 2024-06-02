@@ -11,6 +11,7 @@ import { ErrorRoute } from '../Components/Errors/Error/ErrorRoute';
 import { AuthProvider } from '../Context/AuthProvider';
 import { LogOut } from '../Components/Users/Login/LogOut';
 import { EditUser } from '../Components/Users/EditUser/EditUser';
+import { FollowMe } from '../Components/Follows/FollowMe/FollowMe';
 
 const Router = () => {
     return (
@@ -29,6 +30,7 @@ const Router = () => {
                         <Route path='messages' element={<Message />} />
                         <Route path='notifications' element={<Notifications />} />
                         <Route path='following/:userId' element={<Following />} />
+                        <Route path='followme/:userId' element={<FollowMe />} />
                         <Route path='logout' element={<LogOut />} />
                         <Route path='edituser' element={<EditUser />} />
                     </Route>

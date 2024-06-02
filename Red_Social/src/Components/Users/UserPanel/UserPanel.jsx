@@ -12,7 +12,7 @@ export const UserPanel = () => {
         <section className='section__user-profile'>
             <div className='profile__container'>
                 <div className='profile1'>
-                    <Link to={'following/' + auth._id}>
+                    <Link to={'followme/' + auth._id}>
                         <h2>{countFollowed}</h2>
                         <h4>Followers</h4>
                     </Link>

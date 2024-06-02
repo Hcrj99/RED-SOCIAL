@@ -16,7 +16,7 @@ export const Following = () => {
 
     useEffect(() => {
         getUsers();
-    }, [])
+    }, [page])
 
     const getUsers = async () => {
         //get user from url 
@@ -103,7 +103,6 @@ export const Following = () => {
     return (
         <section className='users__container'>
             {users.map(user => {
-                {
                     if (user._id != auth._id) {
                         return (
                             <article key={user._id} className='user__container-view'>
@@ -124,7 +123,6 @@ export const Following = () => {
                             </article>
                         );
                     }
-                }
             })}
             <div className='move__paginate-users'>
                 {page > 1 ? <button onClick={prevPage}>Prev</button> : ''}
