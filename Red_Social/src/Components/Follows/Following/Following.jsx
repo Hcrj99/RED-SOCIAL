@@ -16,7 +16,7 @@ export const Following = () => {
 
     useEffect(() => {
         getUsers();
-    }, [page])
+    }, [])
 
     const getUsers = async () => {
         //get user from url 
@@ -24,7 +24,7 @@ export const Following = () => {
 
 
         //fecth users
-        const request = await fetch(Global.url + 'follow//following/' + userId + "/" + page, {
+        const request = await fetch(Global.url + 'follow/following/' + userId + "/" + page, {
             method: 'GET',
             headers: {
                 "content-Type": "application/json",
@@ -33,12 +33,21 @@ export const Following = () => {
         });
 
         const data = await request.json();
-        console.log(data);
+        
+        let cleanUsers = [];
+
+        //clean follows
+        data.follows.forEach(follow => {
+            cleanUsers = [...cleanUsers, follow.followed];
+        });
+
+        data.users = cleanUsers;
+
         //state list users
-        if (data.follows && data.status === 'success') {
-            setUsers(data.follows);
+        if (data.users && data.status === 'success') {
+            setUsers(data.users);
             setTotalPages(data.totalpages);
-            setFollowing(data.following);
+            setFollowing(data.userfollowing);
         }
     };
 
