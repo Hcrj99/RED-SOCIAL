@@ -34,8 +34,8 @@
     align-items: center;
     width: 100px;
     height: 100px;
-    border-radius: 50%;
-    border: 5px solid var(--button-color);
+    border-radius: 30%;
+    border: 2px solid var(--button-color);
 }
 
 .profile1 a {

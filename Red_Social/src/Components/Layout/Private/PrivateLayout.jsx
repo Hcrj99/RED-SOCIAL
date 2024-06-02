@@ -5,6 +5,7 @@ import { UsersPanel } from '../../Users/UsersPanel/UsersPanel';
 import './PrivateLayout.css';
 import useAuth from '../../../Hooks/useAuth';
 import { Loading } from '../../Loading/Loading';
+import { CreatePublication } from '../../Publications/CreatePublication/CreatePublication';
 
 export const PrivateLayout = () => {
     const { auth, loading } = useAuth();
@@ -24,10 +25,7 @@ export const PrivateLayout = () => {
                 {auth._id ? (<section className='private__section'>
                     <UserPanel />
                     <div className='feed__section'>
-                        <div>
-                            <h2>following images</h2>
-                        </div>
-                        <h1>Create Publication</h1>
+                        <CreatePublication />
                         <Outlet />
                     </div>
                     <UsersPanel />
