@@ -13,9 +13,9 @@ export const Login = () => {
     const loginUser = async (event) => {
         event.preventDefault();
         let loginUser = formulary;
-        console.log(loginUser);
+        
         const { data } = await Ajax(Global.url + 'user/login', 'POST', loginUser);
-        console.log(data);
+
         if (data.status === 'success') {
             //keep sesions
             localStorage.setItem('token', data.token);

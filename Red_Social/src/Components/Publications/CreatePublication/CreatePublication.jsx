@@ -13,16 +13,11 @@ export const CreatePublication = () => {
 
     const savePublication = async (event) => {
         event.preventDefault();
-
-        console.log(auth._id);
         //get data from
         let newPublication = formulary;
 
-        console.log(newPublication);
-
         newPublication.user = auth._id;
 
-        console.log(newPublication);
         //request save in bd
         const request = await fetch(Global.url + 'publication/save', {
             method: 'POST',
@@ -35,15 +30,37 @@ export const CreatePublication = () => {
 
         const data = await request.json();
 
-        console.log(data);
-
         if (data.status === 'success') {
             setPublicated('publicated');
-        }else {
+        } else {
             setPublicated('error');
         }
 
         //load image
+        const fileInput = document.querySelector('#filep');
+
+        if (data.status === 'success' && fileInput.files[0]) {
+
+            const formData = new FormData();
+            formData.append('file0', fileInput.files[0]);
+
+            const requestUpload = await fetch(Global.url + 'publication/upload/' + data.publicationStore._id, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    "Authorization": localStorage.getItem('token')
+                }
+            });
+
+            const dataUpload = await requestUpload.json();
+
+            if (dataUpload.status === 'success') {
+                setPublicated('publicated');
+            }
+            else{
+                setPublicated('error');
+            }
+        }
     }
 
     return (
@@ -62,7 +79,7 @@ export const CreatePublication = () => {
                         <input type='file' name='file0' id='filep' />
                     </div>
                     <input type='submit' value='Publicate' />
-                    <h2>{publicated === 'publicated'? "publication made" : " "}{publicated === 'error'? "The publication could not be made" : " "}</h2>
+                    <h2>{publicated === 'publicated' ? "publication made" : " "}{publicated === 'error' ? "The publication could not be made" : " "}</h2>
                 </div>
             </form>
         </section>
