@@ -60,6 +60,11 @@ export const CreatePublication = () => {
             else{
                 setPublicated('error');
             }
+
+            if(data.status === 'success' || dataUpload.status === 'sucess'){
+                const myForm = document.querySelector('#form__publication');
+                myForm.reset();
+            }
         }
     }
 
@@ -68,7 +73,7 @@ export const CreatePublication = () => {
             <figure>
                 {auth.image !== 'Default.png' ? <img src={Global.url + 'user/avatar/' + auth.image} alt='user image'></img> : <img src={userEmpty} alt='user image'></img>}
             </figure>
-            <form onSubmit={savePublication}>
+            <form onSubmit={savePublication} id='form__publication'>
                 <div className="title__publication">
                     <label htmlFor="text">Share us your history</label>
                     <input type="text" name='text' placeholder='What do you think?' onChange={changed} />
