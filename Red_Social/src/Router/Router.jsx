@@ -12,6 +12,7 @@ import { AuthProvider } from '../Context/AuthProvider';
 import { LogOut } from '../Components/Users/Login/LogOut';
 import { EditUser } from '../Components/Users/EditUser/EditUser';
 import { FollowMe } from '../Components/Follows/FollowMe/FollowMe';
+import { Profile } from '../Components/Users/Profile/Profile';
 
 const Router = () => {
     return (
@@ -33,6 +34,7 @@ const Router = () => {
                         <Route path='followme/:userId' element={<FollowMe />} />
                         <Route path='logout' element={<LogOut />} />
                         <Route path='edituser' element={<EditUser />} />
+                        <Route path='profile/:userId' element={<Profile />} />
                     </Route>
 
                     <Route path='*' element={<ErrorRoute />} />

@@ -19,7 +19,7 @@
     border-radius: 10px;
 }
 
-.user__container-view figure, .user__container-view figure img {
+.user__container-view .image__perfil, .user__container-view .image__perfil img {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -65,8 +65,13 @@
 }
 
 .user__description-ids .nick {
+    text-decoration: none;
     color: #696975;
     font-size: 0.8rem;
+}
+
+.user__description-ids .nick:hover {
+    color: var(--main-words-color);
 }
 
 .user__description-ids .name{

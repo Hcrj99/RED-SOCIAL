@@ -3,6 +3,7 @@ import './UsersPanel.css';
 import { Global } from '../../../Helpers/Global';
 import { useEffect, useState } from 'react';
 import useAuth from '../../../Hooks/useAuth';
+import { Link } from 'react-router-dom';
 
 export const UsersPanel = () => {
     const { auth } = useAuth();
@@ -90,12 +91,12 @@ export const UsersPanel = () => {
                     if (user._id != auth._id) {
                         return (
                             <article key={user._id} className='user__container-view'>
-                                <figure>
+                                <Link to={'profile/user=' + user._id} className='image__perfil'>
                                     {user.image !== 'Default.png' ? <img src={Global.url + 'user/avatar/' + user.image} alt='user image'></img> : <img src={userEmpty} alt='user image'></img>}
-                                </figure>
+                                </Link>
                                 <div className='user__description'>
                                     <div className='user__description-ids'>
-                                        <h4 className='nick'>@{user.nick}</h4>
+                                        <Link  to={'profile/user=' + user._id} className='nick'>@{user.nick}</Link>
                                         <h4 className='name'>{user.name} date</h4>
                                         <h4 className='bio'>{user.bio}</h4>
                                     </div>

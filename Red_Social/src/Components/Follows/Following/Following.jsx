@@ -1,9 +1,9 @@
 import userEmpty from '../../../img/userempty.jpg';
-import '../../Users/UsersPanel/UsersPanel.css';
+import '../FollowMe/Follows.css';
 import { Global } from '../../../Helpers/Global';
 import { useEffect, useState } from 'react';
 import useAuth from '../../../Hooks/useAuth';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 
 
 export const Following = () => {
@@ -105,13 +105,13 @@ export const Following = () => {
             {users.map(user => {
                     if (user._id != auth._id) {
                         return (
-                            <article key={user._id} className='user__container-view'>
-                                <figure>
+                            <article key={user._id} className='user__container-view-2'>
+                                <NavLink to={'/hs/profile/user=' + user._id} className='image__perfil'>
                                     {user.image !== 'Default.png' ? <img src={Global.url + 'user/avatar/' + user.image} alt='user image'></img> : <img src={userEmpty} alt='user image'></img>}
-                                </figure>
+                                </NavLink>
                                 <div className='user__description'>
                                     <div className='user__description-ids'>
-                                        <h4 className='nick'>@{user.nick}</h4>
+                                        <NavLink  to={'/hs/profile/user=' + user._id} className='nick'>@{user.nick}</NavLink>
                                         <h4 className='name'>{user.name} date</h4>
                                         <h4 className='bio'>{user.bio}</h4>
                                     </div>
