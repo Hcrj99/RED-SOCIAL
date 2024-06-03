@@ -4,6 +4,7 @@ import { Global } from '../../../Helpers/Global';
 import { useEffect, useState } from 'react';
 import useAuth from '../../../Hooks/useAuth';
 import { NavLink, useParams } from 'react-router-dom';
+import { Loading } from '../../Loading/Loading';
 
 export const FollowMe = () => {
     const { auth } = useAuth();
@@ -12,10 +13,11 @@ export const FollowMe = () => {
     const [totalPage, setTotalPages] = useState();
     const [following, setFollowing] = useState([]);
     const params = useParams();
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         getUsers();
-    }, [page])
+    }, [])
 
     const getUsers = async () => {
         //get user from url 
@@ -46,6 +48,7 @@ export const FollowMe = () => {
             setUsers(data.users);
             setTotalPages(data.totalpages);
             setFollowing(data.userfollowme);
+            setLoading(false);
         }
     };
 
@@ -97,35 +100,38 @@ export const FollowMe = () => {
             setFollowing(filter);
         }
     };
-
-    return (
-        <section className='users__container'>
-            {(users.length > 0) ? users.map(user => {
-                if ((user._id != auth._id) || ((params.userId != auth._id) && (user._id == auth._id))) {
-                    return (
-                        <article key={user._id} className='user__container-view-2'>
-                            <NavLink to={'/hs/profile/' + user._id} className='image__perfil'>
-                                {user.image !== 'Default.png' ? <img src={Global.url + 'user/avatar/' + user.image} alt='user image'></img> : <img src={userEmpty} alt='user image'></img>}
-                            </NavLink>
-                            <div className='user__description'>
-                                <div className='user__description-ids'>
-                                    <NavLink to={'/hs/profile/' + user._id} className='nick'>@{user.nick}</NavLink>
-                                    <h4 className='name'>{user.name} date</h4>
-                                    <h4 className='bio'>{user.bio}</h4>
+    if (loading) {
+        <Loading />
+    } else {
+        return (
+            <section className='users__container'>
+                {(users.length > 0) ? users.map(user => {
+                    if ((user._id != auth._id) || ((params.userId != auth._id) && (user._id == auth._id))) {
+                        return (
+                            <article key={user._id} className='user__container-view-2'>
+                                <NavLink to={'/hs/profile/' + user._id} className='image__perfil'>
+                                    {user.image !== 'Default.png' ? <img src={Global.url + 'user/avatar/' + user.image} alt='user image'></img> : <img src={userEmpty} alt='user image'></img>}
+                                </NavLink>
+                                <div className='user__description'>
+                                    <div className='user__description-ids'>
+                                        <NavLink to={'/hs/profile/' + user._id} className='nick'>@{user.nick}</NavLink>
+                                        <h4 className='name'>{user.name} date</h4>
+                                        <h4 className='bio'>{user.bio}</h4>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className='social__methods'>
-                                {(following.includes(user._id) && (user._id != auth._id)) && <button onClick={() => unFollow(user._id)}>UNFOLLOW</button>}
-                                {(!following.includes(user._id) && (user._id != auth._id)) && <button onClick={() => follow(user._id)}>FOLLOW</button>}
-                            </div>
-                        </article>
-                    );
-                }
-            }):<h2>the user does not have followers yet</h2>}
-            <div className='move__paginate-users'>
-                {page > 1 ? <button onClick={prevPage}>Prev</button> : ''}
-                {page < totalPage ? <button onClick={nextPage}>Next</button> : ''}
-            </div>
-        </section>
-    )
+                                <div className='social__methods'>
+                                    {(following.includes(user._id) && (user._id != auth._id)) && <button onClick={() => unFollow(user._id)}>UNFOLLOW</button>}
+                                    {(!following.includes(user._id) && (user._id != auth._id)) && <button onClick={() => follow(user._id)}>FOLLOW</button>}
+                                </div>
+                            </article>
+                        );
+                    }
+                }) : <h2>the user does not have followers yet</h2>}
+                <div className='move__paginate-users'>
+                    {page > 1 ? <button onClick={prevPage}>Prev</button> : ''}
+                    {page < totalPage ? <button onClick={nextPage}>Next</button> : ''}
+                </div>
+            </section>
+        )
+    }
 }

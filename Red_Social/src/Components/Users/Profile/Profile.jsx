@@ -35,11 +35,11 @@ export const Profile = () => {
         return data;
     };
 
-    const getDataUser = async() => {
+    const getDataUser = async () => {
         setIfollow(false);
         let data = await getProfile();
         console.log(data.following.followed);
-        if(data.following.followed) setIfollow(true);
+        if (data.following.followed) setIfollow(true);
     };
 
 
@@ -78,7 +78,7 @@ export const Profile = () => {
         const data = await request.json();
         //add new follow
         if (data.status === 'success') {
-           setIfollow(true);
+            setIfollow(true);
         }
     };
 
@@ -95,7 +95,7 @@ export const Profile = () => {
         const data = await request.json();
         //add  unfollow
         if (data.status === 'success') {
-           setIfollow(false);
+            setIfollow(false);
         }
     };
 

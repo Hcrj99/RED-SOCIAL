@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
             setTimeout(() => {
                 setLoading(false);
                 return false;
-            },2000)
+            },200)
         }
         //transform object in javascript
         const userObject = JSON.parse(user);

@@ -2,7 +2,7 @@ import './UserPanel.css';
 import useAuth from "../../../Hooks/useAuth";
 import { Global } from '../../../Helpers/Global';
 import userEmpty from '../../../img/userempty.jpg';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export const UserPanel = () => {
 
@@ -12,17 +12,17 @@ export const UserPanel = () => {
         <section className='section__user-profile'>
             <div className='profile__container'>
                 <div className='profile1'>
-                    <Link to={'followme/' + auth._id}>
+                    <NavLink to={'/hs/followme/' + auth._id}>
                         <h2>{countFollowed}</h2>
                         <h4>Followers</h4>
-                    </Link>
+                    </NavLink>
                     <figure>
                         {auth.image !== 'Default.png' ? <img src={Global.url + 'user/avatar/' + auth.image} alt='user image'></img> : <img src={userEmpty} alt='user image'></img>}
                     </figure>
-                    <Link to={'following/' + auth._id}>
+                    <NavLink to={'/hs/following/' + auth._id}>
                         <h2>{countFollowings}</h2>
                         <h4>Following</h4>
-                    </Link>
+                    </NavLink>
                 </div>
                 <div className='profile2'>
                     <h2>{auth.name}</h2>
