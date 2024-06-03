@@ -91,19 +91,19 @@ export const UsersPanel = () => {
                     if (user._id != auth._id) {
                         return (
                             <article key={user._id} className='user__container-view'>
-                                <Link to={'profile/user=' + user._id} className='image__perfil'>
+                                <Link to={'profile/' + user._id} className='image__perfil'>
                                     {user.image !== 'Default.png' ? <img src={Global.url + 'user/avatar/' + user.image} alt='user image'></img> : <img src={userEmpty} alt='user image'></img>}
                                 </Link>
                                 <div className='user__description'>
                                     <div className='user__description-ids'>
-                                        <Link  to={'profile/user=' + user._id} className='nick'>@{user.nick}</Link>
+                                        <Link to={'profile/' + user._id} className='nick'>@{user.nick}</Link>
                                         <h4 className='name'>{user.name} date</h4>
                                         <h4 className='bio'>{user.bio}</h4>
                                     </div>
                                 </div>
                                 <div className='social__methods'>
-                                    {following.includes(user._id) && <button onClick={() => unFollow(user._id)}>UNFOLLOW</button>}
-                                    {!following.includes(user._id) && <button onClick={() => follow(user._id)}>FOLLOW</button>}
+                                    {(following.includes(user._id) && (user._id != auth._id)) && <button onClick={() => unFollow(user._id)}>UNFOLLOW</button>}
+                                    {(!following.includes(user._id) && (user._id != auth._id)) && <button onClick={() => follow(user._id)}>FOLLOW</button>}
                                 </div>
                             </article>
                         );

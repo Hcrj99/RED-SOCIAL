@@ -22,7 +22,6 @@ export const Following = () => {
         //get user from url 
         const userId = params.userId;
 
-
         //fecth users
         const request = await fetch(Global.url + 'follow/following/' + userId + "/" + page, {
             method: 'GET',
@@ -33,7 +32,7 @@ export const Following = () => {
         });
 
         const data = await request.json();
-        
+
         let cleanUsers = [];
 
         //clean follows
@@ -103,26 +102,26 @@ export const Following = () => {
     return (
         <section className='users__container'>
             {users.map(user => {
-                    if (user._id != auth._id) {
-                        return (
-                            <article key={user._id} className='user__container-view-2'>
-                                <NavLink to={'/hs/profile/user=' + user._id} className='image__perfil'>
-                                    {user.image !== 'Default.png' ? <img src={Global.url + 'user/avatar/' + user.image} alt='user image'></img> : <img src={userEmpty} alt='user image'></img>}
-                                </NavLink>
-                                <div className='user__description'>
-                                    <div className='user__description-ids'>
-                                        <NavLink  to={'/hs/profile/user=' + user._id} className='nick'>@{user.nick}</NavLink>
-                                        <h4 className='name'>{user.name} date</h4>
-                                        <h4 className='bio'>{user.bio}</h4>
-                                    </div>
+                if ((user._id != auth._id) || ((params.userId != auth._id) && (user._id == auth._id))) {
+                    return (
+                        <article key={user._id} className='user__container-view-2'>
+                            <NavLink to={'/hs/profile/' + user._id} className='image__perfil'>
+                                {user.image !== 'Default.png' ? <img src={Global.url + 'user/avatar/' + user.image} alt='user image'></img> : <img src={userEmpty} alt='user image'></img>}
+                            </NavLink>
+                            <div className='user__description'>
+                                <div className='user__description-ids'>
+                                    <NavLink to={'/hs/profile/' + user._id} className='nick'>@{user.nick}</NavLink>
+                                    <h4 className='name'>{user.name} date</h4>
+                                    <h4 className='bio'>{user.bio}</h4>
                                 </div>
-                                <div className='social__methods'>
-                                    {following.includes(user._id) && <button onClick={() => unFollow(user._id)}>UNFOLLOW</button>}
-                                    {!following.includes(user._id) && <button onClick={() => follow(user._id)}>FOLLOW</button>}
-                                </div>
-                            </article>
-                        );
-                    }
+                            </div>
+                            <div className='social__methods'>
+                                {(following.includes(user._id) && (user._id != auth._id)) && <button onClick={() => unFollow(user._id)}>UNFOLLOW</button>}
+                                {(!following.includes(user._id) && (user._id != auth._id)) && <button onClick={() => follow(user._id)}>FOLLOW</button>}
+                            </div>
+                        </article>
+                    );
+                }
             })}
             <div className='move__paginate-users'>
                 {page > 1 ? <button onClick={prevPage}>Prev</button> : ''}
