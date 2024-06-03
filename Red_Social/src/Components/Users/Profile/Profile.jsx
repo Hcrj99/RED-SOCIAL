@@ -2,15 +2,17 @@ import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom";
 import { Global } from "../../../Helpers/Global";
 import userEmpty from '../../../img/userempty.jpg';
+import useAuth from '../../../Hooks/useAuth';
 
 export const Profile = () => {
     const params = useParams();
     const [user, setUser] = useState({});
     const [countFollowed, setCountFollowed] = useState();
     const [countFollowings, seCountFollowings] = useState();
+    const [iFollow, setIfollow] = useState(false);
 
     useEffect(() => {
-        getProfile();
+        getDataUser();
         getCounters();
     }, [params.userId]);
 
@@ -30,7 +32,17 @@ export const Profile = () => {
         if (data.status === 'success') {
             setUser(data.user);
         }
+
+        return data;
     };
+
+    const getDataUser = async() => {
+        setIfollow(false);
+        let data = await getProfile();
+        console.log(data.following.followed);
+        if(data.following.followed) setIfollow(true);
+    };
+
 
     const getCounters = async () => {
         const userId = params.userId;
@@ -54,6 +66,40 @@ export const Profile = () => {
         seCountFollowings(countFollowing.total);
     };
 
+    const follow = async (userId) => {
+        //fecth save follow
+        const request = await fetch(Global.url + 'follow/save/', {
+            method: 'POST',
+            body: JSON.stringify({ followed: userId }),
+            headers: {
+                "content-Type": "application/json",
+                "Authorization": localStorage.getItem('token')
+            }
+        });
+        const data = await request.json();
+        //add new follow
+        if (data.status === 'success') {
+           setIfollow(true);
+        }
+    };
+
+    const unFollow = async (userId) => {
+        //fecth save follow
+        const request = await fetch(Global.url + 'follow/unfollow/' + userId, {
+            method: 'DELETE',
+            headers: {
+                "contentType": "application/json",
+                "Authorization": localStorage.getItem('token')
+            }
+        })
+
+        const data = await request.json();
+        //add  unfollow
+        if (data.status === 'success') {
+           setIfollow(false);
+        }
+    };
+
     return (
         <section className='section__user-profile'>
             <div className='profile__container'>
@@ -75,9 +121,12 @@ export const Profile = () => {
                     <h3>@{user.nick}</h3>
                     <h4>{user.bio}</h4>
                 </div>
+                <div className='social__methods'>
+                    {iFollow ? <button onClick={() => unFollow(user._id)}>UNFOLLOW</button> : <button onClick={() => follow(user._id)}>FOLLOW</button>}
+                </div>
             </div>
             <div className='history__container'>
-                <h2>My publication</h2>
+                <h2>Publications</h2>
             </div>
         </section>
     )
