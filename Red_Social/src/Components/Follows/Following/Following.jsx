@@ -101,7 +101,7 @@ export const Following = () => {
 
     return (
         <section className='users__container'>
-            {users.map(user => {
+            {(users.length > 0) ? users.map(user => {
                 if ((user._id != auth._id) || ((params.userId != auth._id) && (user._id == auth._id))) {
                     return (
                         <article key={user._id} className='user__container-view-2'>
@@ -122,7 +122,7 @@ export const Following = () => {
                         </article>
                     );
                 }
-            })}
+            }):<h2>the user has not followed anyone yet</h2>}
             <div className='move__paginate-users'>
                 {page > 1 ? <button onClick={prevPage}>Prev</button> : ''}
                 {page < totalPage ? <button onClick={nextPage}>Next</button> : ''}

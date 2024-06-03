@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom";
 import { Global } from "../../../Helpers/Global";
 import userEmpty from '../../../img/userempty.jpg';
-import useAuth from '../../../Hooks/useAuth';
 
 export const Profile = () => {
     const params = useParams();
