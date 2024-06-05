@@ -9,10 +9,12 @@ export const Profile = () => {
     const [countFollowed, setCountFollowed] = useState();
     const [countFollowings, seCountFollowings] = useState();
     const [iFollow, setIfollow] = useState(false);
+    const [publications, setPublications] = useState();
 
     useEffect(() => {
         getDataUser();
         getCounters();
+        getPublications();
     }, [params.userId]);
 
     const getProfile = async () => {
@@ -38,7 +40,6 @@ export const Profile = () => {
     const getDataUser = async () => {
         setIfollow(false);
         let data = await getProfile();
-        console.log(data.following.followed);
         if (data.following.followed) setIfollow(true);
     };
 
@@ -96,6 +97,31 @@ export const Profile = () => {
         //add  unfollow
         if (data.status === 'success') {
             setIfollow(false);
+        }
+    };
+
+    const getPublications = async() => {
+        const userId = params.userId;
+
+        const page = 1;
+
+        const request = await fetch(Global.url + 'publication/getpublications/' + userId + '/' + page, {
+            headers: {
+                'content-Type':'application/json',
+                'Authorization': localStorage.getItem('token')
+            }
+        });
+
+        const data = await request.json();
+
+        console.log(data);
+
+        if(data.status == 'success'){
+            if(data.message === 'user has no publications'){
+                setPublications([]);
+            }else{
+                setPublications(data.publications);
+            }
         }
     };
 

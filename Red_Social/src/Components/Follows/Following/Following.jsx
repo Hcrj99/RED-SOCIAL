@@ -18,7 +18,7 @@ export const Following = () => {
 
     useEffect(() => {
         getUsers();
-    }, [])
+    }, [page])
 
     const getUsers = async () => {
         //get user from url 
