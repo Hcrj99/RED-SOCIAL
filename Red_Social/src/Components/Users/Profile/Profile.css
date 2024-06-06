@@ -1,0 +1,48 @@
+.history__container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.publication__container {
+    height: 210px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: var(--secondary-background-color);
+}
+
+.publication__container figure, .publication__container figure img {
+    width: 145px;
+    height: 145px;
+    border-radius: 20%;
+}
+
+.title__publication {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.title__publication .text {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    font-size: 0.6rem;
+}
+
+.title__publication .description {
+    font-weight: lighter;
+    font-size: 0.8rem;
+}
+
+.title__publication h4 {
+    font-size: 0.6rem;
+    color: #696975;
+}

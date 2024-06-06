@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom";
 import { Global } from "../../../Helpers/Global";
 import userEmpty from '../../../img/userempty.jpg';
+import publicationEmpty from '../../../img/publicationempty.jpg';
+import './Profile.css';
 
 export const Profile = () => {
     const params = useParams();
@@ -9,7 +11,7 @@ export const Profile = () => {
     const [countFollowed, setCountFollowed] = useState();
     const [countFollowings, seCountFollowings] = useState();
     const [iFollow, setIfollow] = useState(false);
-    const [publications, setPublications] = useState();
+    const [publications, setPublications] = useState([]);
 
     useEffect(() => {
         getDataUser();
@@ -40,7 +42,10 @@ export const Profile = () => {
     const getDataUser = async () => {
         setIfollow(false);
         let data = await getProfile();
-        if (data.following.followed) setIfollow(true);
+        console.log(data);
+        if (data.following) {
+            if (data.following.followed) setIfollow(true);
+        }
     };
 
 
@@ -100,14 +105,15 @@ export const Profile = () => {
         }
     };
 
-    const getPublications = async() => {
+    const getPublications = async () => {
         const userId = params.userId;
 
         const page = 1;
 
         const request = await fetch(Global.url + 'publication/getpublications/' + userId + '/' + page, {
+            method: 'GET',
             headers: {
-                'content-Type':'application/json',
+                'content-Type': 'application/json',
                 'Authorization': localStorage.getItem('token')
             }
         });
@@ -116,12 +122,10 @@ export const Profile = () => {
 
         console.log(data);
 
-        if(data.status == 'success'){
-            if(data.message === 'user has no publications'){
-                setPublications([]);
-            }else{
-                setPublications(data.publications);
-            }
+        if (data.status == 'success' && data.publications) {
+            setPublications(data.publications);
+        } else if (data.status === 'success' && !data.publications) {
+            setPublications([]);
         }
     };
 
@@ -151,7 +155,22 @@ export const Profile = () => {
                 </div>
             </div>
             <div className='history__container'>
-                <h2>Publications</h2>
+                {publications.map(publication => {
+                    return (
+                        <article key={publication._id} className='publication__container'>
+                            <figure>
+                                {publication.file ? <img src={Global.url + 'publication/media/' + publication.file} alt='user image'></img> : <img src={publicationEmpty} alt='publication image'></img>}
+                            </figure>
+                            <div className="title__publication">
+                                <div className="text">
+                                    <h3>{publication.user.name}</h3>
+                                    <h3 className="description">{publication.text}</h3>
+                                </div>
+                                <h4>{publication.createat}</h4>
+                            </div>
+                        </article>
+                    );
+                })}
             </div>
         </section>
     )
