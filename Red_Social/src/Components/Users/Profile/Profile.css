@@ -33,13 +33,19 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    gap: 20px;
+    gap: 10px;
     font-size: 0.6rem;
 }
 
 .title__publication .description {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100px;
     font-weight: lighter;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
+    word-wrap: break-word;
+    white-space: normal;
 }
 
 .title__publication h4 {

@@ -12,12 +12,18 @@ export const Profile = () => {
     const [countFollowings, seCountFollowings] = useState();
     const [iFollow, setIfollow] = useState(false);
     const [publications, setPublications] = useState([]);
+    const [page, setpage] = useState(1);
+    const [totalPage, setTotalPage] = useState();
 
     useEffect(() => {
         getDataUser();
         getCounters();
         getPublications();
     }, [params.userId]);
+
+    useEffect(() => {
+        getPublications();
+    }, [page]);
 
     const getProfile = async () => {
         const userId = params.userId;
@@ -108,8 +114,6 @@ export const Profile = () => {
     const getPublications = async () => {
         const userId = params.userId;
 
-        const page = 1;
-
         const request = await fetch(Global.url + 'publication/getpublications/' + userId + '/' + page, {
             method: 'GET',
             headers: {
@@ -124,8 +128,23 @@ export const Profile = () => {
 
         if (data.status == 'success' && data.publications) {
             setPublications(data.publications);
+            setTotalPage(data.totalPages);
         } else if (data.status === 'success' && !data.publications) {
             setPublications([]);
+        }
+    };
+
+    const nextPage = () => {
+        if (page < totalPage) {
+            let next = page + 1;
+            setpage(next);
+        }
+    };
+
+    const prevPage = () => {
+        if (page > 1) {
+            let next = page - 1;
+            setpage(next);
         }
     };
 
@@ -171,6 +190,10 @@ export const Profile = () => {
                         </article>
                     );
                 })}
+            </div>
+            <div className='move__paginate-users'>
+                {publications.length > 1 && page > 1 ? <button onClick={prevPage}>Prev</button> : ''}
+                {publications.length > 1 && page < totalPage ? <button onClick={nextPage}>More</button> : ''}
             </div>
         </section>
     )
