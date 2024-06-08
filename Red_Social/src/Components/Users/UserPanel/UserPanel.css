@@ -64,3 +64,27 @@
     font-size: 0.8rem;
     color: #696975;
 }
+
+.history__container-user {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+
+.publication__container-user {
+    height: 190px;
+    width: 170px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    background-color: var(--secondary-background-color);
+}
+
+.publication__container-user figure, .publication__container-user figure img {
+    width: 110px;
+    height: 110px;
+    border-radius: 20%;
+}

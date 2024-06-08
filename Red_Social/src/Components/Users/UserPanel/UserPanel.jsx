@@ -3,10 +3,54 @@ import useAuth from "../../../Hooks/useAuth";
 import { Global } from '../../../Helpers/Global';
 import userEmpty from '../../../img/userempty.jpg';
 import { NavLink } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import publicationEmpty from '../../../img/publicationempty.jpg';
 
 export const UserPanel = () => {
 
     const { auth , countFollowed , countFollowings } = useAuth();
+    const [publications, setPublications] = useState([]);
+    const [page, setpage] = useState(1);
+    const [totalPage, setTotalPage] = useState();
+
+    useEffect(() => {
+        getPublications();
+    }, [page]);
+
+    const getPublications = async () => {
+        const userId = auth._id;
+
+        const request = await fetch(Global.url + 'publication/getpublications/' + userId + '/' + page, {
+            method: 'GET',
+            headers: {
+                'content-Type': 'application/json',
+                'Authorization': localStorage.getItem('token')
+            }
+        });
+
+        const data = await request.json();
+
+        if (data.status == 'success' && data.publications) {
+            setPublications(data.publications);
+            setTotalPage(data.totalPages);
+        } else if (data.status === 'success' && !data.publications) {
+            setPublications([]);
+        }
+    };
+
+    const nextPage = () => {
+        if (page < totalPage) {
+            let next = page + 1;
+            setpage(next);
+        }
+    };
+
+    const prevPage = () => {
+        if (page > 1) {
+            let next = page - 1;
+            setpage(next);
+        }
+    };
 
     return (
         <section className='section__user-profile'>
@@ -30,8 +74,27 @@ export const UserPanel = () => {
                     <h4>{auth.bio}</h4>
                 </div>
             </div>
-            <div className='history__container'>
-                <h2>My publication</h2>
+            <div className='history__container-user'>
+                {publications.map(publication => {
+                    return (
+                        <article key={publication._id} className='publication__container-user'>
+                            <figure>
+                                {publication.file ? <img src={Global.url + 'publication/media/' + publication.file} alt='user image'></img> : <img src={publicationEmpty} alt='publication image'></img>}
+                            </figure>
+                            <div className="title__publication">
+                                <div className="text">
+                                    <h3>{publication.user.name}</h3>
+                                    <h3 className="description">{publication.text}</h3>
+                                </div>
+                                <h4>{publication.createat}</h4> 
+                            </div>
+                        </article>
+                    );
+                })}
+            </div>
+            <div className='move__paginate-users'>
+                {publications.length > 1 && page > 1 ? <button onClick={prevPage}>Prev</button> : ''}
+                {publications.length > 1 && page < totalPage ? <button onClick={nextPage}>More</button> : ''}
             </div>
         </section>
     )

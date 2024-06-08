@@ -124,8 +124,6 @@ export const Profile = () => {
 
         const data = await request.json();
 
-        console.log(data);
-
         if (data.status == 'success' && data.publications) {
             setPublications(data.publications);
             setTotalPage(data.totalPages);
