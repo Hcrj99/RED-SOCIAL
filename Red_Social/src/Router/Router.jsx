@@ -13,6 +13,7 @@ import { LogOut } from '../Components/Users/Login/LogOut';
 import { EditUser } from '../Components/Users/EditUser/EditUser';
 import { FollowMe } from '../Components/Follows/FollowMe/FollowMe';
 import { Profile } from '../Components/Users/Profile/Profile';
+import { PublicationsFollows } from '../Components/Publications/PublicationsFollows';
 
 const Router = () => {
     return (
@@ -27,7 +28,8 @@ const Router = () => {
 
                     <Route path='/hs' element={<PrivateLayout />}>
                         <Route index element={<Publications />} />
-                        <Route path='feed' element={<Publications />} />
+                        <Route path='publications' element={<Publications />} />
+                        <Route path='feed' element={<PublicationsFollows />} />
                         <Route path='messages' element={<Message />} />
                         <Route path='notifications' element={<Notifications />} />
                         <Route path='following/:userId' element={<Following />} />

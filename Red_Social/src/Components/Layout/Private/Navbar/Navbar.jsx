@@ -9,10 +9,10 @@ const Navbar = () => {
     return (
         <nav className='nav__container'>
             <ul className='nav__container-menu'>
-                <li className='nav__menu-icon'><NavLink to='/hs/feed'><HomeSvg /></NavLink></li>
+                <li className='nav__menu-icon'><NavLink to='/hs/publications'><HomeSvg /></NavLink></li>
                 <li className='nav__menu-icon' ><NavLink to='/hs/messages'><Message /></NavLink></li>
                 <li className='nav__menu-icon'><NavLink to='/hs/notifications'><Notification /></NavLink></li>
-                <li className='nav__menu-icon'><NavLink to='/hs/follows'><Like /></NavLink></li>
+                <li className='nav__menu-icon'><NavLink to='/hs/feed'><Like /></NavLink></li>
             </ul>
         </nav>
     )
