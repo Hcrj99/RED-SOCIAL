@@ -190,8 +190,8 @@ export const Profile = () => {
                 })}
             </div>
             <div className='move__paginate-users'>
-                {publications.length > 1 && page > 1 ? <button onClick={prevPage}>Prev</button> : ''}
-                {publications.length > 1 && page < totalPage ? <button onClick={nextPage}>More</button> : ''}
+                {publications.length > 0 && page > 1 ? <button onClick={prevPage}>Prev</button> : ''}
+                {publications.length > 0 && page < totalPage ? <button onClick={nextPage}>More</button> : ''}
             </div>
         </section>
     )

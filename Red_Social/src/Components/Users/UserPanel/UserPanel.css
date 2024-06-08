@@ -88,3 +88,15 @@
     height: 110px;
     border-radius: 20%;
 }
+
+.button__publication button{
+    width: 50px;
+    height: 20px;
+    border: solid 1px var(--secondary-background-color);
+    border-radius: 20px;
+    font-weight: bold;
+    color: var(--button-color);
+    background-color: var(--main-backgorund-color);
+    font-size: 0.5rem;
+    cursor: pointer;
+}

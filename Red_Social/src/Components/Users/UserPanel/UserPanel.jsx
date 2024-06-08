@@ -15,6 +15,7 @@ export const UserPanel = () => {
 
     useEffect(() => {
         getPublications();
+        setpage(1);
     }, [page]);
 
     const getPublications = async () => {
@@ -23,14 +24,14 @@ export const UserPanel = () => {
         const request = await fetch(Global.url + 'publication/getpublications/' + userId + '/' + page, {
             method: 'GET',
             headers: {
-                'content-Type': 'application/json',
+                'Content-Type': 'application/json',
                 'Authorization': localStorage.getItem('token')
             }
         });
 
         const data = await request.json();
 
-        if (data.status == 'success' && data.publications) {
+        if (data.status === 'success' && data.publications) {
             setPublications(data.publications);
             setTotalPage(data.totalPages);
         } else if (data.status === 'success' && !data.publications) {
@@ -50,6 +51,23 @@ export const UserPanel = () => {
             let next = page - 1;
             setpage(next);
         }
+    };
+
+    const deletePublication = async(publicationId) => {
+        const request = await fetch(Global.url + 'publication/delete/' + publicationId, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.getItem('token')
+            }
+        });
+
+        const data = await request.json();
+
+        console.log(data);
+
+        setpage(0);
+
     };
 
     return (
@@ -88,13 +106,16 @@ export const UserPanel = () => {
                                 </div>
                                 <h4>{publication.createat}</h4> 
                             </div>
+                            <div className='button__publication'>
+                                <button onClick={() => deletePublication(publication._id)}>Delete</button>
+                            </div>
                         </article>
                     );
                 })}
             </div>
             <div className='move__paginate-users'>
-                {publications.length > 1 && page > 1 ? <button onClick={prevPage}>Prev</button> : ''}
-                {publications.length > 1 && page < totalPage ? <button onClick={nextPage}>More</button> : ''}
+                {publications.length > 0 && page > 1 ? <button onClick={prevPage}>Prev</button> : ''}
+                {publications.length > 0 && page < totalPage ? <button onClick={nextPage}>More</button> : ''}
             </div>
         </section>
     )
