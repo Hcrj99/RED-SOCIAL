@@ -15,7 +15,7 @@ export const UserPanel = () => {
 
     useEffect(() => {
         getPublications();
-        setpage(1);
+        if(page === 0)setpage(1);
     }, [page]);
 
     const getPublications = async () => {
@@ -64,10 +64,9 @@ export const UserPanel = () => {
 
         const data = await request.json();
 
-        console.log(data);
-
-        setpage(0);
-
+        if(data.status === 'success'){
+            setpage(0);
+        }
     };
 
     return (
