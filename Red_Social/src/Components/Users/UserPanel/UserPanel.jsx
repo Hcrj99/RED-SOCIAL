@@ -2,7 +2,7 @@ import './UserPanel.css';
 import useAuth from "../../../Hooks/useAuth";
 import { Global } from '../../../Helpers/Global';
 import userEmpty from '../../../img/userempty.jpg';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import publicationEmpty from '../../../img/publicationempty.jpg';
 
@@ -90,6 +90,9 @@ export const UserPanel = () => {
                     <h3>@{auth.nick}</h3>
                     <h4>{auth.bio}</h4>
                 </div>
+                <Link to={'profile/' + auth._id} className='my__profile'>
+                    <h2>My profile</h2>
+                </Link>
             </div>
             <div className='history__container-user'>
                 {publications.map(publication => {

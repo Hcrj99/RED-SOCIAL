@@ -30,7 +30,6 @@ export const HeaderPrivate = () => {
                     </ul>
                 </li>
             </ul>
-
         </header>
     );
 }

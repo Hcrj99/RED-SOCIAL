@@ -43,7 +43,7 @@
 }
 
 .profile1 a  h2 {
-    font-size: 1rem;
+    font-size: 0.8rem;
     color: var(--main-words-color);
 }
 
@@ -61,8 +61,17 @@
 }
 
 .profile2 h3 {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     color: #696975;
+}
+
+.profile2 h2 {
+    font-size: 1rem;
+}
+
+.profile2 h4 {
+    font-size: 0.8rem;
+    font-weight: lighter;
 }
 
 .history__container-user {
@@ -99,4 +108,21 @@
     background-color: var(--main-backgorund-color);
     font-size: 0.5rem;
     cursor: pointer;
+}
+
+.my__profile {
+    text-align: center;
+    border: 1px solid var(--main-backgorund-color);
+    border-radius: 5px;
+    width: 90%;
+    box-shadow: 0px 0px 10px var(--main-backgorund-color);
+    padding: 10px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.my__profile h2 {
+    font-size: 1rem;
+    font-weight: lighter;
+    color: #696975;
 }
