@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Global } from "../../../Helpers/Global";
 import useAuth from "../../../Hooks/useAuth";
 import { useForm } from "../../../Hooks/useForm";
@@ -10,6 +10,12 @@ export const CreatePublication = () => {
     const { auth } = useAuth();
     const { formulary, changed } = useForm({});
     const [publicated, setPublicated] = useState('notpublicated');
+
+    useEffect(() => {
+        setTimeout(() => {
+            setPublicated('notpublicated');
+        },500);
+    },[publicated]);
 
     const savePublication = async (event) => {
         event.preventDefault();
