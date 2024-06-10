@@ -10,7 +10,7 @@ export const PublicationsFollows = () => {
     const [page, setpage] = useState(1);
     const [totalPage, setTotalPage] = useState();
     const { auth } = useAuth();
-
+    const [newPublication, setNewPublications] = useState(false);
 
     useEffect(() => {
         getPublications();
@@ -18,7 +18,7 @@ export const PublicationsFollows = () => {
 
     useEffect(() => {
         getPublications();
-    }, [page]);
+    }, [page, newPublication]);
 
     const getPublications = async () => {
         const request = await fetch(Global.url + 'publication/feed/' + page, {
@@ -55,8 +55,14 @@ export const PublicationsFollows = () => {
     };
 
 
+    const newPublications = () => {
+        setPublications([]);
+        setNewPublications(true);
+    };
+
     return (
         <div className='publications'>
+            <button className='new__publications' onClick={newPublications}>New publications</button>
             {publications.map(publication => {
                 return (
                     <article key={publication._id} className='publication__container-card'>
