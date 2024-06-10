@@ -5,6 +5,7 @@ import userEmpty from '../../../img/userempty.jpg';
 import { Link, NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import publicationEmpty from '../../../img/publicationempty.jpg';
+import ReactTimeAgo from 'react-time-ago';
 
 export const UserPanel = () => {
 
@@ -106,7 +107,7 @@ export const UserPanel = () => {
                                     <h3>{publication.user.name}</h3>
                                     <h3 className="description">{publication.text}</h3>
                                 </div>
-                                <h4>{publication.createat}</h4> 
+                                <h4 className='time'>{<ReactTimeAgo date={publication.createat}/>}</h4> 
                             </div>
                             <div className='button__publication'>
                                 <button onClick={() => deletePublication(publication._id)}>Delete</button>

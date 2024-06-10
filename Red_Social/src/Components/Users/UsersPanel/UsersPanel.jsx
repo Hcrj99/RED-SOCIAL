@@ -4,6 +4,8 @@ import { Global } from '../../../Helpers/Global';
 import { useEffect, useState } from 'react';
 import useAuth from '../../../Hooks/useAuth';
 import { Link } from 'react-router-dom';
+import ReactTimeAgo from 'react-time-ago';
+
 
 export const UsersPanel = () => {
     const { auth } = useAuth();
@@ -97,7 +99,10 @@ export const UsersPanel = () => {
                                 <div className='user__description'>
                                     <div className='user__description-ids'>
                                         <Link to={'profile/' + user._id} className='nick'>@{user.nick}</Link>
-                                        <h4 className='name'>{user.name} date</h4>
+                                        <div className='user__time'>
+                                        <h4 className='name'>{user.name}</h4>
+                                        <h3 className='time'>{<ReactTimeAgo date={user.createAt}/>}</h3>
+                                        </div>
                                         <h4 className='bio'>{user.bio}</h4>
                                     </div>
                                 </div>

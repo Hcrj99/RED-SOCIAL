@@ -4,6 +4,7 @@ import { Global } from "../../../Helpers/Global";
 import userEmpty from '../../../img/userempty.jpg';
 import publicationEmpty from '../../../img/publicationempty.jpg';
 import './Profile.css';
+import ReactTimeAgo from 'react-time-ago';
 
 export const Profile = () => {
     const params = useParams();
@@ -183,7 +184,7 @@ export const Profile = () => {
                                     <h3>{publication.user.name}</h3>
                                     <h3 className="description">{publication.text}</h3>
                                 </div>
-                                <h4>{publication.createat}</h4>
+                                <h4 className='time'>{<ReactTimeAgo date={publication.createat}/>}</h4> 
                             </div>
                         </article>
                     );

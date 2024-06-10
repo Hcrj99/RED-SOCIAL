@@ -5,6 +5,7 @@ import publicationEmpty from '../../img/publicationempty.jpg';
 import { Global } from '../../Helpers/Global';
 import './Publications.css';
 import useAuth from '../../Hooks/useAuth';
+import ReactTimeAgo from 'react-time-ago';
 
 export const Publications = () => {
   const [publications, setPublications] = useState([]);
@@ -76,7 +77,7 @@ export const Publications = () => {
                   <h3>@{auth.nick}</h3>
                   <div className='profile__pub-text'>
                     <h2>{auth.name}</h2>
-                    <h4>date</h4>
+                    <h4 className='time'>{<ReactTimeAgo date={publication.createat}/>}</h4>
                   </div>
                 </div>
               </div>

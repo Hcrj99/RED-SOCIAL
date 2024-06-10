@@ -74,7 +74,7 @@
     color: var(--main-words-color);
 }
 
-.user__description-ids .name{
+.user__description-ids .user__time .name{
     font-size: 1rem;
 }
 
@@ -93,6 +93,18 @@
     color: var(--button-color);
     background-color: var(--secondary-background-color);
     cursor: pointer;
+}
+
+.user__time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.time {
+    color: var(--button-color);
+    font-size: 0.5rem;
 }
 
 @media (width <= 430px){
