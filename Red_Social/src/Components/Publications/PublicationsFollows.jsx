@@ -1,16 +1,20 @@
 import { useEffect, useState } from 'react';
 import userEmpty from '../../img/userempty.jpg';
-import { useParams } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import publicationEmpty from '../../img/publicationempty.jpg';
 import { Global } from '../../Helpers/Global';
 import useAuth from '../../Hooks/useAuth';
 
 export const PublicationsFollows = () => {
-    const params = useParams();
     const [publications, setPublications] = useState([]);
     const [page, setpage] = useState(1);
     const [totalPage, setTotalPage] = useState();
     const { auth } = useAuth();
+
+
+    useEffect(() => {
+        getPublications();
+    }, []);
 
     useEffect(() => {
         getPublications();
@@ -35,6 +39,22 @@ export const PublicationsFollows = () => {
         }
     };
 
+
+    const nextPage = () => {
+        if (page < totalPage) {
+            let next = page + 1;
+            setpage(next);
+        }
+    };
+
+    const prevPage = () => {
+        if (page > 1) {
+            let next = page - 1;
+            setpage(next);
+        }
+    };
+
+
     return (
         <div className='publications'>
             {publications.map(publication => {
@@ -42,7 +62,7 @@ export const PublicationsFollows = () => {
                     <article key={publication._id} className='publication__container-card'>
                         <div className='user__panel'>
                             <NavLink to={'/hs/profile/' + publication.user._id}>
-                                {auth.image !== 'Default.png' ? <img src={Global.url + 'user/avatar/' + auth.image} alt='user image'></img> : <img src={userEmpty} alt='user image'></img>}
+                                {publication.user.image !== 'Default.png' ? <img src={Global.url + 'user/avatar/' + publication.user.image} alt='user image'></img> : <img src={userEmpty} alt='user image'></img>}
                             </NavLink>
                             <div className='user__identifications'>
                                 <div className='profile__pub'>
@@ -54,15 +74,25 @@ export const PublicationsFollows = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="text">
+                        <div className="text__publication">
                             <h3 className="description">{publication.text}</h3>
                         </div>
                         <figure className='publication__image'>
                             {publication.file ? <img src={Global.url + 'publication/media/' + publication.file} alt='user image'></img> : <img src={publicationEmpty} alt='publication image'></img>}
                         </figure>
+                        <div className='interactuation__user-loged'>
+                            <figure className='image__user-loged' to={'/hs/profile/' + publication.user._id}>
+                                {auth.image !== 'Default.png' ? <img src={Global.url + 'user/avatar/' + auth.image} alt='user image'></img> : <img src={userEmpty} alt='user image'></img>}
+                            </figure>
+                            <input type='text' placeholder='Write your comment'></input>
+                        </div>
                     </article>
                 );
             })}
+            <div className='move__paginate-users'>
+                {publications.length > 0 && page > 1 ? <button onClick={prevPage}>Prev</button> : ''}
+                {publications.length > 0 && page < totalPage ? <button onClick={nextPage}>More</button> : ''}
+            </div>
         </div>
     )
 }

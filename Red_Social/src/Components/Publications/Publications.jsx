@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import userEmpty from '../../img/userempty.jpg';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import publicationEmpty from '../../img/publicationempty.jpg';
 import { Global } from '../../Helpers/Global';
 import './Publications.css';
@@ -62,7 +62,7 @@ export const Publications = () => {
           <article key={publication._id} className='publication__container-card'>
             <div className='user__panel'>
               <NavLink to={'/hs/profile/' + publication.user._id}>
-                {auth.image !== 'Default.png' ? <img src={Global.url + 'user/avatar/' + publication.user.image} alt='user image'></img> : <img src={userEmpty} alt='user image'></img>}
+                {publication.user.image !== 'Default.png' ? <img src={Global.url + 'user/avatar/' + publication.user.image} alt='user image'></img> : <img src={userEmpty} alt='user image'></img>}
               </NavLink>
               <div className='user__identifications'>
                 <div className='profile__pub'>

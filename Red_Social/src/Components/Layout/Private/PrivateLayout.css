@@ -14,10 +14,6 @@
     align-items: center;
 }
 
-.private__section{
-    margin-top: 60px;
-}
-
 @media (width <= 430px) {
     .private__section {
         margin-top: 30px;
