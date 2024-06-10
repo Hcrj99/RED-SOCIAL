@@ -2,9 +2,9 @@ import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom";
 import { Global } from "../../../Helpers/Global";
 import userEmpty from '../../../img/userempty.jpg';
-import publicationEmpty from '../../../img/publicationempty.jpg';
 import './Profile.css';
 import ReactTimeAgo from 'react-time-ago';
+import useAuth from "../../../Hooks/useAuth";
 
 export const Profile = () => {
     const params = useParams();
@@ -15,6 +15,7 @@ export const Profile = () => {
     const [publications, setPublications] = useState([]);
     const [page, setpage] = useState(1);
     const [totalPage, setTotalPage] = useState();
+    const { auth } = useAuth();
 
     useEffect(() => {
         getDataUser();
@@ -164,27 +165,29 @@ export const Profile = () => {
                     </Link>
                 </div>
                 <div className='profile2'>
-                    <h2>{user.name}</h2>
+                    <h2>{user.name} {user.surname}</h2>
                     <h3>@{user.nick}</h3>
                     <h4>{user.bio}</h4>
                 </div>
-                <div className='social__methods'>
+                {(auth._id != user._id) ? (<div className='social__methods'>
                     {iFollow ? <button onClick={() => unFollow(user._id)}>UNFOLLOW</button> : <button onClick={() => follow(user._id)}>FOLLOW</button>}
-                </div>
+                </div>) : ""}
             </div>
             <div className='history__container'>
                 {publications.map(publication => {
                     return (
                         <article key={publication._id} className='publication__container'>
-                            <figure>
-                                {publication.file ? <img src={Global.url + 'publication/media/' + publication.file} alt='user image'></img> : <img src={publicationEmpty} alt='publication image'></img>}
-                            </figure>
+                            {publication.file ? (
+                                <figure>
+                                    {publication.file ? <img src={Global.url + 'publication/media/' + publication.file} alt='user image'></img> : ""}
+                                </figure>
+                            ) : ''}
                             <div className="title__publication">
                                 <div className="text">
                                     <h3>{publication.user.name}</h3>
                                     <h3 className="description">{publication.text}</h3>
                                 </div>
-                                <h4 className='time'>{<ReactTimeAgo date={publication.createat}/>}</h4> 
+                                <h4 className='time'>{<ReactTimeAgo date={publication.createat} />}</h4>
                             </div>
                         </article>
                     );

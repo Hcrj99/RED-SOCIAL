@@ -1,11 +1,13 @@
 .history__container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 10px;
+    flex-direction: column;
 }
 
 .publication__container {
-    height: 210px;
+    max-height: 210px;
     display: flex;
     justify-content: center;
     flex-direction: column;

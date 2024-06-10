@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import userEmpty from '../../img/userempty.jpg';
 import { NavLink } from 'react-router-dom';
-import publicationEmpty from '../../img/publicationempty.jpg';
 import { Global } from '../../Helpers/Global';
 import './Publications.css';
 import useAuth from '../../Hooks/useAuth';
@@ -74,10 +73,10 @@ export const Publications = () => {
               </NavLink>
               <div className='user__identifications'>
                 <div className='profile__pub'>
-                  <h3>@{auth.nick}</h3>
+                  <h3>@{publication.user.nick}</h3>
                   <div className='profile__pub-text'>
-                    <h2>{auth.name}</h2>
-                    <h4 className='time'>{<ReactTimeAgo date={publication.createat}/>}</h4>
+                    <h2>{publication.user.name}</h2>
+                    <h4 className='time'>{<ReactTimeAgo date={publication.createat} />}</h4>
                   </div>
                 </div>
               </div>
@@ -85,9 +84,11 @@ export const Publications = () => {
             <div className="text__publication">
               <h3 className="description">{publication.text}</h3>
             </div>
-            <figure className='publication__image'>
-              {publication.file ? <img src={Global.url + 'publication/media/' + publication.file} alt='user image'></img> : <img src={publicationEmpty} alt='publication image'></img>}
-            </figure>
+            {publication.file ? (
+              <figure className='publication__image'>
+                {publication.file ? <img src={Global.url + 'publication/media/' + publication.file} alt='user image'></img> : ""}
+              </figure>
+            ) : ''}
             <div className='interactuation__user-loged'>
               <figure className='image__user-loged' to={'/hs/profile/' + publication.user._id}>
                 {auth.image !== 'Default.png' ? <img src={Global.url + 'user/avatar/' + auth.image} alt='user image'></img> : <img src={userEmpty} alt='user image'></img>}

@@ -4,7 +4,6 @@ import { Global } from '../../../Helpers/Global';
 import userEmpty from '../../../img/userempty.jpg';
 import { Link, NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import publicationEmpty from '../../../img/publicationempty.jpg';
 import ReactTimeAgo from 'react-time-ago';
 
 export const UserPanel = () => {
@@ -87,7 +86,7 @@ export const UserPanel = () => {
                     </NavLink>
                 </div>
                 <div className='profile2'>
-                    <h2>{auth.name}</h2>
+                    <h2>{auth.name} {auth.surname}</h2>
                     <h3>@{auth.nick}</h3>
                     <h4>{auth.bio}</h4>
                 </div>
@@ -99,9 +98,11 @@ export const UserPanel = () => {
                 {publications.map(publication => {
                     return (
                         <article key={publication._id} className='publication__container-user'>
-                            <figure>
-                                {publication.file ? <img src={Global.url + 'publication/media/' + publication.file} alt='user image'></img> : <img src={publicationEmpty} alt='publication image'></img>}
-                            </figure>
+                            {publication.file ? (
+                                <figure>
+                                    {publication.file ? <img src={Global.url + 'publication/media/' + publication.file} alt='user image'></img> : ""}
+                                </figure>
+                            ) : ''}
                             <div className="title__publication">
                                 <div className="text">
                                     <h3>{publication.user.name}</h3>
