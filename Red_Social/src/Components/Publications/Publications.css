@@ -75,8 +75,8 @@
 }
 
 .image__user-loged, .image__user-loged img{
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     border-radius: 35%;
 }
 
@@ -85,7 +85,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
     margin-top: 20px;
 }
 
@@ -98,7 +98,6 @@
     font-weight: bold;
     color: var(--button-color);
     background-color: var(--main-backgorund-color);
-    margin-bottom: 10px;
 }
 
 .new__publications {

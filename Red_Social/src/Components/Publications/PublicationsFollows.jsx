@@ -72,9 +72,9 @@ export const PublicationsFollows = () => {
                             </NavLink>
                             <div className='user__identifications'>
                                 <div className='profile__pub'>
-                                    <h3>@{auth.nick}</h3>
+                                    <h3>@{publication.user.nick}</h3>
                                     <div className='profile__pub-text'>
-                                        <h2>{auth.name}</h2>
+                                        <h2>{publication.user.name}</h2>
                                         <h4 className='time'>{<ReactTimeAgo date={publication.createat} />}</h4>
                                     </div>
                                 </div>

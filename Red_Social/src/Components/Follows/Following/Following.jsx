@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import useAuth from '../../../Hooks/useAuth';
 import { NavLink, useParams } from 'react-router-dom';
 import { Loading } from '../../Loading/Loading';
-
+import ReactTimeAgo from 'react-time-ago';
 
 export const Following = () => {
     const { auth } = useAuth();
@@ -117,7 +117,10 @@ export const Following = () => {
                                 <div className='user__description'>
                                     <div className='user__description-ids'>
                                         <NavLink to={'/hs/profile/' + user._id} className='nick'>@{user.nick}</NavLink>
-                                        <h4 className='name'>{user.name} date</h4>
+                                        <div className='user__time'>
+                                            <h4 className='name'>{user.name}</h4>
+                                            <h3 className='time'>{<ReactTimeAgo date={user.createAt} />}</h3>
+                                        </div>
                                         <h4 className='bio'>{user.bio}</h4>
                                     </div>
                                 </div>

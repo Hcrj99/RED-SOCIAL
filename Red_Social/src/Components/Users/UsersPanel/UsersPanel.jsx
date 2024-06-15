@@ -100,8 +100,8 @@ export const UsersPanel = () => {
                                     <div className='user__description-ids'>
                                         <Link to={'profile/' + user._id} className='nick'>@{user.nick}</Link>
                                         <div className='user__time'>
-                                        <h4 className='name'>{user.name}</h4>
-                                        <h3 className='time'>{<ReactTimeAgo date={user.createAt}/>}</h3>
+                                            <h4 className='name'>{user.name}</h4>
+                                            <h3 className='time'>{<ReactTimeAgo date={user.createAt} />}</h3>
                                         </div>
                                         <h4 className='bio'>{user.bio}</h4>
                                     </div>
