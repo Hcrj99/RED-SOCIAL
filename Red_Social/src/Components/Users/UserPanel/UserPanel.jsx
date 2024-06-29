@@ -95,6 +95,7 @@ export const UserPanel = () => {
                 </Link>
             </div>
             <div className='history__container-user'>
+                <h4>My Publications</h4>
                 {publications.map(publication => {
                     return (
                         <article key={publication._id} className='publication__container-user'>

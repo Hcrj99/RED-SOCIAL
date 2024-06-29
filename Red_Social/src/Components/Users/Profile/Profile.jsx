@@ -174,6 +174,7 @@ export const Profile = () => {
                 </div>) : ""}
             </div>
             <div className='history__container'>
+                <h4>Publications</h4>
                 {publications.map(publication => {
                     return (
                         <article key={publication._id} className='publication__container'>
