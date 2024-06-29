@@ -1,5 +1,5 @@
 .publicater {
-    width: 60%;
+    max-width: 900px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,7 +38,7 @@
 }
 
 .publicater form input[type='text'] {
-    width: 400px;
+    max-width: 400px;
     height: 35px;
     padding: 10px;
     border: solid 1px var(--secondary-background-color);
